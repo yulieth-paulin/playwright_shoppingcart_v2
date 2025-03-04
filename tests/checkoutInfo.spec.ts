@@ -39,7 +39,7 @@ test.describe("Inventory challenge", async () => {
         await inventoryPage.goToCart();
 
         const checkoutInfoPage = new CheckoutInformation(page);
-        await checkoutInfoPage.accessToChekoutInfoPage();
+        await checkoutInfoPage.accessToCheckoutInfoPage();
         
         // Validar si el botón "Continue" es visible antes de hacer clic
         await expect(checkoutInfoPage.getContinueButton()).toBeVisible(); //antes de llenar todos los campos, debemos de validar que el botón esté visible, si lo pongo después de llenarlos me saldrá error.
@@ -60,7 +60,7 @@ test.describe("Inventory challenge", async () => {
         await inventoryPage.goToCart();
 
         const checkoutInfoPage = new CheckoutInformation(page);
-        await checkoutInfoPage.accessToChekoutInfoPage();
+        await checkoutInfoPage.accessToCheckoutInfoPage();
         
         // Validar si el botón "Continue" es visible antes de hacer clic
         await expect(checkoutInfoPage.getContinueButton()).toBeVisible(); //antes de llenar todos los campos, debemos de validar que el botón esté visible, si lo pongo después de llenarlos me saldrá error.
@@ -82,7 +82,7 @@ test.describe("Inventory challenge", async () => {
         await inventoryPage.goToCart();
 
         const checkoutInfoPage = new CheckoutInformation(page);
-        await checkoutInfoPage.accessToChekoutInfoPage();
+        await checkoutInfoPage.accessToCheckoutInfoPage();
         
         // Validar si el botón "Continue" es visible antes de hacer clic
         await expect(checkoutInfoPage.getContinueButton()).toBeVisible(); //antes de llenar todos los campos, debemos de validar que el botón esté visible, si lo pongo después de llenarlos me saldrá error.
@@ -103,7 +103,7 @@ test.describe("Inventory challenge", async () => {
         await inventoryPage.goToCart();
 
         const checkoutInfoPage = new CheckoutInformation(page);
-        await checkoutInfoPage.accessToChekoutInfoPage();
+        await checkoutInfoPage.accessToCheckoutInfoPage();
         
         // Validar si el botón "Continue" es visible antes de hacer clic
         await expect(checkoutInfoPage.getContinueButton()).toBeVisible(); //antes de llenar todos los campos, debemos de validar que el botón esté visible, si lo pongo después de llenarlos me saldrá error.
@@ -124,7 +124,7 @@ test.describe("Inventory challenge", async () => {
         await inventoryPage.goToCart();
 
         const checkoutInfoPage = new CheckoutInformation(page);
-        await checkoutInfoPage.accessToChekoutInfoPage();
+        await checkoutInfoPage.accessToCheckoutInfoPage();
         
         // Validar si el botón "Continue" es visible antes de hacer clic
         await expect(checkoutInfoPage.getContinueButton()).toBeVisible(); //antes de llenar todos los campos, debemos de validar que el botón esté visible, si lo pongo después de llenarlos me saldrá error.
