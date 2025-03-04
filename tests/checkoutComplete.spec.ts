@@ -134,7 +134,7 @@ test("Verify sucessful order completion", async ({ page }) => {
         const checkoutOverviewPage = new CheckoutOverviewPage(page);
         await checkoutOverviewPage.completeOrder();
 
-        const checkoutCompletePage = new CheckoutCompletePage(page);
+        const checkoutCompletePage = new CheckoutCompletePage(page); //llama al método
 
         //Assertion: The user is redirected to the complete page.
         await expect(page).toHaveURL("https://www.saucedemo.com/checkout-complete.html")
