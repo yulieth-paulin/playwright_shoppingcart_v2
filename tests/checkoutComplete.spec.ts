@@ -132,7 +132,7 @@ test("Verify sucessful order completion", async ({ page }) => {
         await checkoutInfoPage.checkoutCorrectInfo('Luciana', 'Domínguez Diez', '7689027888');
     
         const checkoutOverviewPage = new CheckoutOverviewPage(page);
-        await checkoutOverviewPage.completeOrder();
+        await checkoutOverviewPage.completeOrder(); //va al método de completar una orden exitosamente
 
         const checkoutCompletePage = new CheckoutCompletePage(page); //llama al método
 
