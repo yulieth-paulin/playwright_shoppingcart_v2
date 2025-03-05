@@ -1,7 +1,6 @@
 import { test, expect } from '@playwright/test';
 import { LoginPage } from '../src/login';
 import { InventoryPage } from '../src/inventory';
-import { log } from 'console';
 import { expectedProductNames } from '../data/productsData';
 
 
@@ -49,7 +48,6 @@ test.describe("Inventory challenge", async () => {
         
         // Obtener los precios después de ordenar
         const prices = await inventoryPage.getAllPrices();
-
         // Convertir los precios de string a number
         const numericPrices = prices.map(price => parseFloat(price.replace('$' , '')));
 
@@ -85,7 +83,7 @@ test.describe("Inventory challenge", async () => {
 
         await loginPage.loginCorrectCredentials('standard_user','secret_sauce');
         // Add a random product to the cart
-        await inventoryPage.addRandomproductToCart();
+        await inventoryPage.addRandomProductToCart();
         
         //Assertion: The product is successfully added to the cart
         const cartCount = await inventoryPage.getCartCount();
@@ -100,7 +98,7 @@ test.describe("Inventory challenge", async () => {
         await loginPage.loginCorrectCredentials('standard_user','secret_sauce');
         
          // Añadir un producto aleatorio al carrito
-        const productName = await inventoryPage.addRandomproductToCart();
+        const productName = await inventoryPage.addRandomProductToCart();
         
         // Ir al carrito 
         await inventoryPage.goToCart();
@@ -125,7 +123,7 @@ test.describe("Inventory challenge", async () => {
         await loginPage.loginCorrectCredentials('standard_user','secret_sauce');
         
          // Añadir un producto aleatorio al carrito
-        await inventoryPage.addRandomproductToCart();
+        await inventoryPage.addRandomProductToCart();
         
         // Ir al carrito 
         await inventoryPage.goToCart();

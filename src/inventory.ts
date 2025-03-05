@@ -1,9 +1,7 @@
 import { Locator, Page } from "@playwright/test";
 
 export class InventoryPage {
-    private readonly page: Page;
     private readonly shoppingCartIcon: Locator;
-    private readonly sortProducCombobox: Locator;
     private readonly inventoryItemImage: Locator;
     private readonly inventoryItemName: Locator;
     private readonly inventoryItemDescription: Locator;
@@ -13,13 +11,10 @@ export class InventoryPage {
     private readonly cartBadge: Locator; 
     private readonly inventoryItems: Locator;
     private readonly removeButton: Locator;
-    private readonly continueShoppingButton: Locator;
     private readonly itemQuantity: Locator;
 
     constructor(page: Page){
-        this.page = page;
         this.shoppingCartIcon = page.locator("//a[@class='shopping_cart_link']");
-        this.sortProducCombobox = page.locator("//span[@class='select_container']");
         this.inventoryItemImage = page.locator("//div[@class='inventory_item_img']"); //trae todas las 6 imágenes
         this.inventoryItemName = page.locator("//div[@data-test='inventory-item-name']"); //trae todos los nombres
         this.inventoryItemDescription = page.locator("//div[@data-test='inventory-item-desc']"); //trae todas las descrip.
@@ -29,7 +24,6 @@ export class InventoryPage {
         this.cartBadge = page.locator("//span[@class='shopping_cart_badge']"); //apunta al contador de productos en el carrito.
         this.inventoryItems = page.locator(".inventory_item"); //locator que apunta a todos los elementos de productos en la página.
         this.removeButton = page.getByRole('button', {name: 'Remove'});
-        this.continueShoppingButton = page.getByTestId('continue-shopping');
         this.itemQuantity = page.locator("//div[@data-test='item-quantity']"); //Cantidad del mismo producto agregado al carrito. 
 
     }
@@ -51,7 +45,7 @@ export class InventoryPage {
     }
 
     async getAllPrices(): Promise<string[]> {
-        return await this.inventoryItemPrice.allTextContents(); //allTextContents(); Verificación de todo el contenido, visible o no
+        return await this.inventoryItemPrice.allInnerTexts(); //allTextContents(); Verificación de todo el contenido, visible o no
     }
 
     async sortProductsByPriceLowToHigh(): Promise<void> { // Usa Promise<void> para acciones sin retorno.
@@ -63,7 +57,7 @@ export class InventoryPage {
     }
 
     //Seleccionar un producto aleatorio
-    async addRandomproductToCart(): Promise<{ name: string; description: string; price: string }>{ //Esta función es asincrónica porque utiliza await para manejar las operaciones que involucran interacción con la página.
+    async addRandomProductToCart(): Promise<{ name: string; description: string; price: string }>{ //Esta función es asincrónica porque utiliza await para manejar las operaciones que involucran interacción con la página.
         const productCount = await this.inventoryItems.count(); //count() devuelve el número total de elementos coincidentes. en este caso serían 6. await espera a que esa promesa se resuelva antes de asignar el valor a productCount
         const randomIndex = Math.floor(Math.random() * productCount); //Math.random() devuelve un número decimal entre 0 y 1 (por ejemplo, 0.728).
         
@@ -78,7 +72,6 @@ export class InventoryPage {
         await randomProductButton.click();
 
         return { name: productName, description: productDescription, price: productPrice }; //devuelve un objeto con { name, description, price }. 
-        
 
     }
 
@@ -102,9 +95,5 @@ export class InventoryPage {
     public getQuantityLocator(): Locator{ //Método para validar que el campo QTY exista. Con el locator puedo iusar cualquier assertion en el Test.
         return this.itemQuantity;
     }
-
-
-
-
 
 }

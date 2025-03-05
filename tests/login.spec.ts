@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 import { LoginPage } from '../src/login';
-import exp from 'constants';
+
 
 test.describe("Login challenge", async () => {
     test.beforeEach(async ({ page }) => {
@@ -12,7 +12,7 @@ test.describe("Login challenge", async () => {
         await loginPage.loginCorrectCredentials('standard_user','secret_sauce');
         
         //Assertion: The user logs in successfully and is redirected to the inventory page.
-        await expect(page.getByText('Products')).toBeVisible();
+        await expect(loginPage.getProductTitle()).toHaveText('Products');
         await expect(page).toHaveURL('https://www.saucedemo.com/inventory.html');
       });
 
