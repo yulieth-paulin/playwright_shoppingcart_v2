@@ -5,13 +5,18 @@
   "main": "index.js",
   "scripts": {
     "test": "npx playwright test test-6environment.spec.ts",
-    "license": "license-checker --csv --out report/license.csv"
+    "license": "license-checker --csv --out report/license.csv",
+    "test:qa": "ENV=qa npx playwright test",
+    "test:dev": "ENV=dev npx playwright test"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@playwright/test": "^1.50.1",
-    "@types/node": "^22.13.1"
+    "@types/node": "^22.13.9"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.7"
   }
 }

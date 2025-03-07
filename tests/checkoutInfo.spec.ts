@@ -17,7 +17,7 @@ test.describe("Inventory challenge", async () => {
         await loginPage.loginCorrectCredentials('standard_user','secret_sauce');
 
         const inventoryPage = new InventoryPage(page);
-        await inventoryPage.addRandomproductToCart();
+        await inventoryPage.addRandomProductToCart();
         await inventoryPage.goToCart();
 
         const checkoutInfoPage = new CheckoutInformation(page);
@@ -35,7 +35,7 @@ test.describe("Inventory challenge", async () => {
         await loginPage.loginCorrectCredentials('standard_user','secret_sauce');
 
         const inventoryPage = new InventoryPage(page);
-        await inventoryPage.addRandomproductToCart();
+        await inventoryPage.addRandomProductToCart();
         await inventoryPage.goToCart();
 
         const checkoutInfoPage = new CheckoutInformation(page);
@@ -56,7 +56,7 @@ test.describe("Inventory challenge", async () => {
         await loginPage.loginCorrectCredentials('standard_user','secret_sauce');
 
         const inventoryPage = new InventoryPage(page);
-        await inventoryPage.addRandomproductToCart();
+        await inventoryPage.addRandomProductToCart();
         await inventoryPage.goToCart();
 
         const checkoutInfoPage = new CheckoutInformation(page);
@@ -78,7 +78,7 @@ test.describe("Inventory challenge", async () => {
         await loginPage.loginCorrectCredentials('standard_user','secret_sauce');
 
         const inventoryPage = new InventoryPage(page);
-        await inventoryPage.addRandomproductToCart();
+        await inventoryPage.addRandomProductToCart();
         await inventoryPage.goToCart();
 
         const checkoutInfoPage = new CheckoutInformation(page);
@@ -99,7 +99,7 @@ test.describe("Inventory challenge", async () => {
         await loginPage.loginCorrectCredentials('standard_user','secret_sauce');
 
         const inventoryPage = new InventoryPage(page);
-        await inventoryPage.addRandomproductToCart();
+        await inventoryPage.addRandomProductToCart();
         await inventoryPage.goToCart();
 
         const checkoutInfoPage = new CheckoutInformation(page);
@@ -120,7 +120,7 @@ test.describe("Inventory challenge", async () => {
         await loginPage.loginCorrectCredentials('standard_user','secret_sauce');
 
         const inventoryPage = new InventoryPage(page);
-        await inventoryPage.addRandomproductToCart();
+        await inventoryPage.addRandomProductToCart();
         await inventoryPage.goToCart();
 
         const checkoutInfoPage = new CheckoutInformation(page);

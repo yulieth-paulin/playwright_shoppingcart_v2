@@ -2,18 +2,19 @@ import { test, expect } from '@playwright/test';
 import { LoginPage } from '../src/login';
 
 
+
 test.describe("Login challenge", async () => {
     test.beforeEach(async ({ page }) => {
-      await page.goto("https://www.saucedemo.com/");
+      await page.goto("https://www.saucedemo.com/"); //Si ENV=qa,será equivalente a:https://www.qa.saucedemo.com/ esto es un ejemplo en caso de tener diferetes urs para cada ambiente
     });
 
     test("login with a valid standard user", async ({ page }) => {
-        const loginPage = new LoginPage(page);
+        const loginPage = new LoginPage(page); //Instancia
         await loginPage.loginCorrectCredentials('standard_user','secret_sauce');
         
         //Assertion: The user logs in successfully and is redirected to the inventory page.
         await expect(loginPage.getProductTitle()).toHaveText('Products');
-        await expect(page).toHaveURL('https://www.saucedemo.com/inventory.html');
+        await expect(page).toHaveURL(process.env.BASE_URL + "inventory.html");
       });
 
       test("login with an incorrect password", async ({ page }) => {

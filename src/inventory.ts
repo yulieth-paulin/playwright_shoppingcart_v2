@@ -76,7 +76,7 @@ export class InventoryPage {
     }
 
     async getCartCount(): Promise<string> {
-        return this.cartBadge.innerText(); //innerText() obtiene el texto visible del elemento, que debería ser el número de productos actualmente en el carrito. Obtiene el texto visible de un solo elemento.
+        return await this.cartBadge.innerText(); //innerText() obtiene el texto visible del elemento, que debería ser el número de productos actualmente en el carrito. Obtiene el texto visible de un solo elemento.
     }
 
     async goToCart(){

@@ -19,14 +19,14 @@ test.describe("Shopping cart product challenge", async () => {
         await loginPage.loginCorrectCredentials('standard_user','secret_sauce');
 
         const inventoryPage = new InventoryPage(page);
-        await inventoryPage.addRandomproductToCart();
+        await inventoryPage.addRandomProductToCart();
         await inventoryPage.goToCart();
 
         const checkoutInfoPage = new CheckoutInformation(page);
         await checkoutInfoPage.accessToCheckoutInfoPage();
         
         // Validar si el botón "Continue" es visible antes de hacer clic
-        await expect(checkoutInfoPage.getContinueButton()).toBeVisible(); //antes de llenar todos los campos, debemos de validar que el botón esté visible, si lo pongo después de llenarlos me saldrá error.
+        expect(checkoutInfoPage.getContinueButton()).toBeVisible(); //antes de llenar todos los campos, debemos de validar que el botón esté visible, si lo pongo después de llenarlos me saldrá error.
 
         await checkoutInfoPage.checkoutCorrectInfo('Luciana', 'Domínguez Diez', '7689027888');
        
@@ -35,15 +35,15 @@ test.describe("Shopping cart product challenge", async () => {
         
         const checkoutOverviewPage = new CheckoutOverviewPage(page);
         
-        await expect(checkoutOverviewPage.isProductNamevisible()).toBeTruthy(); //Usa toBeTruthy(); cuando solo necesitas comprobar si algo existe o es visible. NO lo uses cuando necesitas validar/comparar valores exactos.
-        await expect(checkoutOverviewPage.isProductdescriptionVisible()).toBeTruthy();
-        await expect(checkoutOverviewPage.isProductPriceVisible()).toBeTruthy();
-        await expect(checkoutOverviewPage.getPaymentInfo()).toBeVisible();
-        await expect(checkoutOverviewPage.getShippingInfo()).toBeVisible();
+        expect(checkoutOverviewPage.isProductNamevisible()).toBeTruthy(); //Usa toBeTruthy(); cuando solo necesitas comprobar si algo existe o es visible. NO lo uses cuando necesitas validar/comparar valores exactos.
+        expect(checkoutOverviewPage.isProductdescriptionVisible()).toBeTruthy();
+        expect(checkoutOverviewPage.isProductPriceVisible()).toBeTruthy();
+        expect(checkoutOverviewPage.getPaymentInfo()).toBeVisible();
+        expect(checkoutOverviewPage.getShippingInfo()).toBeVisible();
         await expect(checkoutOverviewPage.getPriceTotal()).toBeVisible();
         await expect(checkoutOverviewPage.getFinishButton()).toBeVisible();
         
-      });
+      }); 
 
       test("Verify that the correct product details are displayed", async ({ page }) => {
         const loginPage = new LoginPage(page);
@@ -52,7 +52,7 @@ test.describe("Shopping cart product challenge", async () => {
         const inventoryPage = new InventoryPage(page);
         
         // Guardamos los detalles del producto agregado al carrito para luego ser comparado
-        const selectedProduct =  await inventoryPage.addRandomproductToCart();
+        const selectedProduct =  await inventoryPage.addRandomProductToCart();
         await inventoryPage.goToCart();
 
         const checkoutInfoPage = new CheckoutInformation(page);
@@ -82,7 +82,7 @@ test.describe("Shopping cart product challenge", async () => {
         await loginPage.loginCorrectCredentials('standard_user', 'secret_sauce');
     
         const inventoryPage = new InventoryPage(page);
-        await inventoryPage.addRandomproductToCart();
+        await inventoryPage.addRandomProductToCart();
         await inventoryPage.goToCart();
     
         const checkoutInfoPage = new CheckoutInformation(page);
@@ -111,7 +111,7 @@ test.describe("Shopping cart product challenge", async () => {
         await loginPage.loginCorrectCredentials('standard_user', 'secret_sauce');
     
         const inventoryPage = new InventoryPage(page);
-        await inventoryPage.addRandomproductToCart();
+        await inventoryPage.addRandomProductToCart();
         await inventoryPage.goToCart();
     
         const checkoutInfoPage = new CheckoutInformation(page);
@@ -124,7 +124,9 @@ test.describe("Shopping cart product challenge", async () => {
         await checkoutOverviewPage.returnToTheCart();
     
         //Assertion: URL and Title are correct.
-        await expect(checkoutOverviewPage.returnToTheProductPage()).toHaveText("Products")
+        const textProduct = checkoutOverviewPage.returnToTheProductPage();
+        await expect(textProduct).toHaveText("Products")
+        // await expect(checkoutOverviewPage.returnToTheProductPage()).toHaveText("Products")
         await expect(page).toHaveURL("https://www.saucedemo.com/inventory.html");
         
       });
@@ -134,7 +136,7 @@ test.describe("Shopping cart product challenge", async () => {
         await loginPage.loginCorrectCredentials('standard_user', 'secret_sauce');
     
         const inventoryPage = new InventoryPage(page);
-        await inventoryPage.addRandomproductToCart();
+        await inventoryPage.addRandomProductToCart();
         await inventoryPage.goToCart();
     
         const checkoutInfoPage = new CheckoutInformation(page);

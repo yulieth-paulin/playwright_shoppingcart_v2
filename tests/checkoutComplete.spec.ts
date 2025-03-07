@@ -16,7 +16,7 @@ test("Verify sucessful order completion", async ({ page }) => {
         await loginPage.loginCorrectCredentials('standard_user', 'secret_sauce');
     
         const inventoryPage = new InventoryPage(page);
-        await inventoryPage.addRandomproductToCart();
+        await inventoryPage.addRandomProductToCart();
         await inventoryPage.goToCart();
     
         const checkoutInfoPage = new CheckoutInformation(page);
@@ -42,7 +42,7 @@ test("Verify sucessful order completion", async ({ page }) => {
         await loginPage.loginCorrectCredentials('standard_user', 'secret_sauce');
     
         const inventoryPage = new InventoryPage(page);
-        await inventoryPage.addRandomproductToCart();
+        await inventoryPage.addRandomProductToCart();
         await inventoryPage.goToCart();
     
         const checkoutInfoPage = new CheckoutInformation(page);
@@ -68,7 +68,7 @@ test("Verify sucessful order completion", async ({ page }) => {
         await loginPage.loginCorrectCredentials('standard_user', 'secret_sauce');
     
         const inventoryPage = new InventoryPage(page);
-        await inventoryPage.addRandomproductToCart();
+        await inventoryPage.addRandomProductToCart();
         await inventoryPage.goToCart();
     
         const checkoutInfoPage = new CheckoutInformation(page);
@@ -93,7 +93,7 @@ test("Verify sucessful order completion", async ({ page }) => {
         await loginPage.loginCorrectCredentials('standard_user', 'secret_sauce');
     
         const inventoryPage = new InventoryPage(page);
-        await inventoryPage.addRandomproductToCart();
+        await inventoryPage.addRandomProductToCart();
         await inventoryPage.goToCart();
     
         const checkoutInfoPage = new CheckoutInformation(page);
@@ -122,7 +122,7 @@ test("Verify sucessful order completion", async ({ page }) => {
         await loginPage.loginCorrectCredentials('standard_user', 'secret_sauce');
     
         const inventoryPage = new InventoryPage(page);
-        await inventoryPage.addRandomproductToCart();
+        await inventoryPage.addRandomProductToCart();
         await inventoryPage.goToCart();
     
         const checkoutInfoPage = new CheckoutInformation(page);
