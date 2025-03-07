@@ -24,6 +24,7 @@ export class CheckoutInformation {
     async accessToCheckoutInfoPage() { //no se usa return porque su propósito es ejecutar una acción (hacer clic en un botón), no devolver un valor.
         await this.checkoutButton.waitFor({ state: 'visible' }); //Agregar una espera implícita para asegurarse de que el botón está disponible antes de hacer clic
         await this.checkoutButton.click(); //Como el click() ya es una promesa (Promise<void>), no hay un valor útil que devolver.
+        await this.continueButton.waitFor({ state: 'visible' }); //Aseguramos que el botón "Continue" sea visible
     }
 
     async checkoutCorrectInfo(name: string, lastName: string, postalCode: string) { //No tiene public explícito porque en TypeScript, los métodos son public por defecto si no se define private o protected

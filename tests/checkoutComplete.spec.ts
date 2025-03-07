@@ -33,7 +33,7 @@ test("Verify sucessful order completion", async ({ page }) => {
         //Assertion: The user is redirected to the "Checkout Complete" page with a confirmation message
         await page.waitForURL("https://www.saucedemo.com/checkout-complete.html"); //Añadir waitForURL() para evitar fallas intermitentes. Agrega un waitForURL() para asegurarte de que la navegación está completa
         await expect(page).toHaveURL("https://www.saucedemo.com/checkout-complete.html");
-        await expect(checkoutCompletePage.getCheckoutCompleteTitle()).toContainText("Checkout: Complete!")
+        await expect(checkoutCompletePage.getCheckoutCompleteTitle()).toHaveText("Checkout: Complete!")
         
       });
 

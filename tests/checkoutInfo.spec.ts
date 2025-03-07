@@ -1,7 +1,6 @@
 import { test, expect } from '@playwright/test';
 import { LoginPage } from '../src/login';
 import { InventoryPage } from '../src/inventory';
-import { log } from 'console';
 import { expectedProductNames } from '../data/productsData';
 import { CheckoutInformation } from '../src/checkoutInfo';
 import exp from 'constants';
@@ -41,9 +40,6 @@ test.describe("Inventory challenge", async () => {
         const checkoutInfoPage = new CheckoutInformation(page);
         await checkoutInfoPage.accessToCheckoutInfoPage();
         
-        // Validar si el botón "Continue" es visible antes de hacer clic
-        await expect(checkoutInfoPage.getContinueButton()).toBeVisible(); //antes de llenar todos los campos, debemos de validar que el botón esté visible, si lo pongo después de llenarlos me saldrá error.
-
         // Assertion:Validar los placeholders
         await expect(checkoutInfoPage.getPlaceHolderFisrtName()).toHaveAttribute('placeholder', 'First Name'); //En este caso, se verifica que el campo tenga un placeholder con el texto 'First Name'
         await expect(checkoutInfoPage.getPlaceHolderLastName()).toHaveAttribute('placeholder', 'Last Name');
