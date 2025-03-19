@@ -39,16 +39,16 @@ export class CheckoutOverviewPage {
         this.completeOrderMessage = page.locator("//div[@data-test='complete-text']");
     }
 
-    async getProductName(): Promise<string> {
-        return await this.itemName.innerText(); //.innerText() → Extrae el texto visible del Locator, que es el nombre del producto. Usa innerText() si solo hay un producto (retorna string).
+    public getProductName(): Locator {
+        return this.itemName; //.innerText() → Extrae el texto visible del Locator, que es el nombre del producto. Usa innerText() si solo hay un producto (retorna string).
     }
 
-    async getProductDescription(): Promise<string> {
-        return await this.itemDescription.innerText(); 
+    public getProductDescription(): Locator {
+        return this.itemDescription; 
     }
 
-    async getProductPrice(): Promise<string> { 
-        return await this.itemPrice.innerText(); 
+    public getProductPrice(): Locator { 
+        return this.itemPrice; 
     }
 
     public getPaymentInfo(): Locator { //No tiene sentido hacer async en este caso, porque this.itemName no es una operación asíncrona. Solo deberías hacer async si el método realiza una operación asíncrona como click(), innerText(), isVisible(), etc.
@@ -67,16 +67,16 @@ export class CheckoutOverviewPage {
         return this.finishButton;
     }
 
-    async isProductNamevisible(): Promise<boolean>{
-        return await this.itemName.isVisible(); //retorna true o false
+    public isProductNamevisible(): Locator{
+        return this.itemName; 
     }
 
-    async isProductdescriptionVisible(): Promise<boolean>{
-        return await this.itemDescription.isVisible();
+    public isProductdescriptionVisible(): Locator{
+        return this.itemDescription;
     }
 
-    async isProductPriceVisible(): Promise<boolean>{
-        return await this.itemPrice.isVisible();
+    public isProductPriceVisible(): Locator{
+        return this.itemPrice;
     }
 
     async getTotalProduct(): Promise<string>{ //Gran total
@@ -134,7 +134,7 @@ export class CheckoutOverviewPage {
 
     }
 
-    async completeOrder() {
+    async completeOrder(): Promise<void> {
         return await this.finishButton.click(); 
 
     }

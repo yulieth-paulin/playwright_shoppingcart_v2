@@ -22,9 +22,9 @@ export class LoginPage{
         await this.loginButton.click();
     }
 
-    async getErrorMessage(): Promise<string> { //operación asincrónica que devuelve una Promise<string>
-        return await this.loginErrorMessage.innerText(); //innerText() es asíncrono porque debe esperar a que Playwright obtenga el texto del DOM. await espera el resultado antes de devolverlo.
-    }
+    public getErrorMessage(): Locator { 
+             return this.loginErrorMessage; 
+     }
 
     public getProductTitle(): Locator {
         return this.productTitle;
