@@ -19,13 +19,13 @@ export class CheckoutInformation {
 
     }
 
-    async accessToCheckoutInfoPage(): Promise<void> { //no se usa return porque su propósito es ejecutar una acción (hacer clic en un botón), no devolver un valor.
-        await this.checkoutButton.click(); //Como el click() ya es una promesa (Promise<void>), no hay un valor útil que devolver.
+    async accessToCheckoutInfoPage(): Promise<void> { 
+        await this.checkoutButton.click(); 
 
     }
 
-    async checkoutCorrectInfo(name: string, lastName: string, postalCode: string) { //No tiene public explícito porque en TypeScript, los métodos son public por defecto si no se define private o protected
-        await this.firstName.clear(); //Para asegurarte de que los campos están vacíos en primera instancia antes de llenarlos.
+    async checkoutCorrectInfo(name: string, lastName: string, postalCode: string) { 
+        await this.firstName.clear(); 
         await this.lastName.clear();
         await this.postalCode.clear();
         
@@ -36,8 +36,8 @@ export class CheckoutInformation {
 
     }
 
-    public getContinueButton(): Locator { //Se puede dejar sin el locator, sin embargo como buena práctica de TypeScript es mejor dejarlo declarado. 
-        return this.continueButton; //Se usa return porque su propósito es devolver el Locator correspondiente al botón "Continue" para que pueda ser utilizado en el test.
+    public getContinueButton(): Locator { 
+        return this.continueButton; 
     }
 
     public getPlaceHolderFisrtName(): Locator{
@@ -52,7 +52,7 @@ export class CheckoutInformation {
         return this.postalCode;
     }
 
-    public getErrorMsgMandatoryAllFields(): Locator { //El async Tiene public por defecto porque queremos llamarlo desde los tests.
+    public getErrorMsgMandatoryAllFields(): Locator { 
         return this.errorMessageFields; 
     }
 

@@ -16,7 +16,7 @@ export class LoginPage{
 
     }
 
-    async loginCorrectCredentials(username: string, password: string){ //Aqui vamos a gestionar operaciones asincrónicas
+    async loginCorrectCredentials(username: string, password: string){ 
         await this.userNameInput.fill(username);
         await this.passwordInput.fill(password);
         await this.loginButton.click();

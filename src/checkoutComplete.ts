@@ -44,7 +44,7 @@ export class CheckoutCompletePage {
     }
 
     public getShoppingCartBadge(): Locator {
-        return this.shoppingCartBadge; //aunque este locator está oculto, lo podemos llamar para validar que no esté visible la cantidad.
+        return this.shoppingCartBadge; 
     }
     
 

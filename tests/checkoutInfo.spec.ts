@@ -20,8 +20,8 @@ test.describe("Checkout Information challenge", async () => {
         const checkoutInfoPage = new CheckoutInformation(page);
         await checkoutInfoPage.accessToCheckoutInfoPage();
         
-        // Validar si el botón "Continue" es visible antes de hacer clic
-        await expect(checkoutInfoPage.getContinueButton()).toBeVisible(); //antes de llenar todos los campos, debemos de validar que el botón esté visible, si lo pongo después de llenarlos me saldrá error.
+        
+        await expect(checkoutInfoPage.getContinueButton()).toBeVisible(); 
 
         await checkoutInfoPage.checkoutCorrectInfo('Oliva Florinda','Tamayo Puerta' , '678902345'); 
 
@@ -40,8 +40,8 @@ test.describe("Checkout Information challenge", async () => {
         const checkoutInfoPage = new CheckoutInformation(page);
         await checkoutInfoPage.accessToCheckoutInfoPage();
         
-        // Assertion:Validar los placeholders
-        await expect(checkoutInfoPage.getPlaceHolderFisrtName()).toHaveAttribute('placeholder', 'First Name'); //En este caso, se verifica que el campo tenga un placeholder con el texto 'First Name'
+        
+        await expect(checkoutInfoPage.getPlaceHolderFisrtName()).toHaveAttribute('placeholder', 'First Name'); 
         await expect(checkoutInfoPage.getPlaceHolderLastName()).toHaveAttribute('placeholder', 'Last Name');
         await expect(checkoutInfoPage.getPlaceHolderPostalCode()).toHaveAttribute('placeholder', 'Zip/Postal Code');
 
@@ -58,12 +58,12 @@ test.describe("Checkout Information challenge", async () => {
         const checkoutInfoPage = new CheckoutInformation(page);
         await checkoutInfoPage.accessToCheckoutInfoPage();
         
-        // Validar si el botón "Continue" es visible antes de hacer clic
-        await expect(checkoutInfoPage.getContinueButton()).toBeVisible(); //antes de llenar todos los campos, debemos de validar que el botón esté visible, si lo pongo después de llenarlos me saldrá error.
+        
+        await expect(checkoutInfoPage.getContinueButton()).toBeVisible(); 
 
         await checkoutInfoPage.checkoutCorrectInfo('', '', '');
        
-        // Assertion:Validar Mensaje de error. 
+         
         await expect(checkoutInfoPage.getErrorMsgMandatoryAllFields()).toHaveText('Error: First Name is required'); 
          
       });
@@ -79,12 +79,11 @@ test.describe("Checkout Information challenge", async () => {
         const checkoutInfoPage = new CheckoutInformation(page);
         await checkoutInfoPage.accessToCheckoutInfoPage();
         
-        // Validar si el botón "Continue" es visible antes de hacer clic
-        await expect(checkoutInfoPage.getContinueButton()).toBeVisible(); //antes de llenar todos los campos, debemos de validar que el botón esté visible, si lo pongo después de llenarlos me saldrá error.
+        
+        await expect(checkoutInfoPage.getContinueButton()).toBeVisible(); 
 
         await checkoutInfoPage.checkoutCorrectInfo('', 'Domínguez Diez', '456789001234');
        
-        // Assertion:Validar Mensaje de error
         await expect(checkoutInfoPage.getErrorMsgMandatoryAllFields()).toHaveText('Error: First Name is required'); 
       });
 
@@ -99,12 +98,10 @@ test.describe("Checkout Information challenge", async () => {
         const checkoutInfoPage = new CheckoutInformation(page);
         await checkoutInfoPage.accessToCheckoutInfoPage();
         
-        // Validar si el botón "Continue" es visible antes de hacer clic
-        await expect(checkoutInfoPage.getContinueButton()).toBeVisible(); //antes de llenar todos los campos, debemos de validar que el botón esté visible, si lo pongo después de llenarlos me saldrá error.
+        await expect(checkoutInfoPage.getContinueButton()).toBeVisible(); 
 
         await checkoutInfoPage.checkoutCorrectInfo('Luciana', '', '456789001234');
        
-        // Assertion:Validar Mensaje de error.
         await expect(checkoutInfoPage.getErrorMsgMandatoryAllFields()).toHaveText('Error: Last Name is required'); 
       });
 
@@ -119,12 +116,11 @@ test.describe("Checkout Information challenge", async () => {
         const checkoutInfoPage = new CheckoutInformation(page);
         await checkoutInfoPage.accessToCheckoutInfoPage();
         
-        // Validar si el botón "Continue" es visible antes de hacer clic
-        await expect(checkoutInfoPage.getContinueButton()).toBeVisible(); //antes de llenar todos los campos, debemos de validar que el botón esté visible, si lo pongo después de llenarlos me saldrá error.
+
+        await expect(checkoutInfoPage.getContinueButton()).toBeVisible(); 
 
         await checkoutInfoPage.checkoutCorrectInfo('Luciana', 'Domínguez Diez', '');
-       
-        // Assertion:Validar Mensaje de error. 
+        
         await expect(checkoutInfoPage.getErrorMsgMandatoryAllFields()).toHaveText('Error: Postal Code is required'); 
       });
 

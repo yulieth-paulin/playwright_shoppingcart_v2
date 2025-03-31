@@ -21,12 +21,11 @@ test.describe("Checkout Overview challenge", async () => {
         const checkoutInfoPage = new CheckoutInformation(page);
         await checkoutInfoPage.accessToCheckoutInfoPage();
         
-        // Validar si el botón "Continue" es visible antes de hacer clic
-        await expect(checkoutInfoPage.getContinueButton()).toBeVisible(); //antes de llenar todos los campos, debemos de validar que el botón esté visible, si lo pongo después de llenarlos me saldrá error.
 
+        await expect(checkoutInfoPage.getContinueButton()).toBeVisible(); 
         await checkoutInfoPage.checkoutCorrectInfo('Luciana', 'Domínguez Diez', '7689027888');
        
-        // Assertion:checkout overview page should load correctly, displaying product details, payment, shipping, and total price information
+        
         await expect(page).toHaveURL("/checkout-step-two.html");
         
         const checkoutOverviewPage = new CheckoutOverviewPage(page);
@@ -46,26 +45,26 @@ test.describe("Checkout Overview challenge", async () => {
 
         const inventoryPage = new InventoryPage(page);
         
-        // Guardamos los detalles del producto agregado al carrito aleatoriamente para luego ser comparado
+        
         const selectedRandomProduct =  await inventoryPage.addRandomProductToCart();
         await inventoryPage.goToCart();
 
         const checkoutInfoPage = new CheckoutInformation(page);
         await checkoutInfoPage.accessToCheckoutInfoPage();
         
-        // Validar si el botón "Continue" es visible antes de hacer clic
-        await expect(checkoutInfoPage.getContinueButton()).toBeVisible(); //antes de llenar todos los campos, debemos de validar que el botón esté visible, si lo pongo después de llenarlos me saldrá error.
+        
+        await expect(checkoutInfoPage.getContinueButton()).toBeVisible(); 
 
         await checkoutInfoPage.checkoutCorrectInfo('Luciana', 'Domínguez Diez', '7689027888');
        
         const checkoutOverviewPage = new CheckoutOverviewPage(page);
 
         
-        const checkoutProductName = await checkoutOverviewPage.getProductName().innerText(); //se guarda el valor en la variable el cual se tiene un string, lo que significa que ya no es  una promesa.
+        const checkoutProductName = await checkoutOverviewPage.getProductName().innerText(); 
         const checkoutProductDescription = await checkoutOverviewPage.getProductDescription().innerText();
         const checkoutProductPrice = await checkoutOverviewPage.getProductPrice().innerText();
 
-        //Assertion:Product name, description, and price should match the selected product
+    
         expect(checkoutProductName).toBe(selectedRandomProduct.name);
         expect(checkoutProductDescription).toBe(selectedRandomProduct.description);
         expect(checkoutProductPrice).toBe(selectedRandomProduct.price); 
@@ -88,16 +87,16 @@ test.describe("Checkout Overview challenge", async () => {
     
         const checkoutOverviewPage = new CheckoutOverviewPage(page);
     
-        // Validar visibilidad de subtotal y tax ANTES de extraer sus valores
+       
         await expect(checkoutOverviewPage.getSubtotalLocator()).toBeVisible();
         await expect(checkoutOverviewPage.getTaxLocator()).toBeVisible();
         await expect(checkoutOverviewPage.getTotalLocator()).toBeVisible();
     
-        // Obtener valores y compararlos
+        
         const granTotal = await checkoutOverviewPage.getTotalProduct();
         const calculatedTotal = await checkoutOverviewPage.getTotalCalculation();
     
-        expect(calculatedTotal).toBe(granTotal); //se usa para verificar si dos valores son exactamente iguales.
+        expect(calculatedTotal).toBe(granTotal);
         
       });
 
@@ -118,9 +117,8 @@ test.describe("Checkout Overview challenge", async () => {
         const checkoutOverviewPage = new CheckoutOverviewPage(page);
         await checkoutOverviewPage.returnToTheCart();
     
-        //Assertion: URL and Title are correct.
+        
         await expect(checkoutOverviewPage.returnToTheProductPage()).toHaveText("Products");
-        // await expect(checkoutOverviewPage.returnToTheProductPage()).toHaveText("Products")
         await expect(page).toHaveURL('/inventory.html');
         
       });
@@ -142,7 +140,7 @@ test.describe("Checkout Overview challenge", async () => {
         const checkoutOverviewPage = new CheckoutOverviewPage(page);
         await checkoutOverviewPage.completeOrder();
     
-        //Assertion: 
+    
         await expect(page).toHaveURL("/checkout-complete.html");
         await expect(checkoutOverviewPage.getHeaderMessage()).toHaveText("Thank you for your order!");
         await expect(checkoutOverviewPage.getOrderDispatchedMessage()).toHaveText("Your order has been dispatched, and will arrive just as fast as the pony can get there!");

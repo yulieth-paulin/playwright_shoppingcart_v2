@@ -4,11 +4,8 @@ export class CheckoutOverviewPage {
     private readonly itemName: Locator;
     private readonly itemDescription: Locator;
     private readonly itemPrice: Locator;
-    private readonly cartQuantity: Locator;
     private readonly paymentInformationLabel: Locator;
-    private readonly sauceCardValue: Locator;
     private readonly shippingInfoLabel: Locator;
-    private readonly freePonyexpressValue: Locator;
     private readonly priceTotalInfoLabel: Locator;
     private readonly subtotalValue: Locator;
     private readonly taxValue: Locator;
@@ -23,11 +20,8 @@ export class CheckoutOverviewPage {
         this.itemName = page.locator("//div[@data-test='inventory-item-name']");
         this.itemDescription = page.locator("//div[@data-test='inventory-item-desc']");
         this.itemPrice = page.locator("//div[@class='inventory_item_price']");
-        this.cartQuantity = page.locator("//div[@class='cart_quantity']");
         this.paymentInformationLabel = page.locator("//div[@data-test='payment-info-label']");
-        this.sauceCardValue = page.locator("//div[@data-test='payment-info-value']");
         this.shippingInfoLabel = page.locator("//div[@data-test='shipping-info-label']");
-        this.freePonyexpressValue = page.locator("//div[@data-test='shipping-info-value']");
         this.priceTotalInfoLabel = page.locator("//div[@data-test='total-info-label']");
         this.subtotalValue = page.locator("//div[@data-test='subtotal-label']");
         this.taxValue = page.locator("//div[@data-test='tax-label']");
@@ -40,7 +34,7 @@ export class CheckoutOverviewPage {
     }
 
     public getProductName(): Locator {
-        return this.itemName; //.innerText() → Extrae el texto visible del Locator, que es el nombre del producto. Usa innerText() si solo hay un producto (retorna string).
+        return this.itemName; 
     }
 
     public getProductDescription(): Locator {
@@ -51,11 +45,11 @@ export class CheckoutOverviewPage {
         return this.itemPrice; 
     }
 
-    public getPaymentInfo(): Locator { //No tiene sentido hacer async en este caso, porque this.itemName no es una operación asíncrona. Solo deberías hacer async si el método realiza una operación asíncrona como click(), innerText(), isVisible(), etc.
+    public getPaymentInfo(): Locator { 
         return this.paymentInformationLabel;
     }
 
-    public getShippingInfo(): Locator { //page.locator(selector) es una operación sincrónica, por lo que no necesita async ni await.
+    public getShippingInfo(): Locator { 
         return this.shippingInfoLabel;
     }
 
@@ -63,7 +57,7 @@ export class CheckoutOverviewPage {
         return this.priceTotalInfoLabel;
     }
 
-    public getFinishButton(): Locator { //Siempre que un método solo devuelva un Locator, debe ser public y sin async, porque obtener un Locator no es una operación asíncrona.
+    public getFinishButton(): Locator { 
         return this.finishButton;
     }
 
@@ -79,36 +73,36 @@ export class CheckoutOverviewPage {
         return this.itemPrice;
     }
 
-    async getTotalProduct(): Promise<string>{ //Gran total
+    async getTotalProduct(): Promise<string>{ 
         const totalText = await this.totalProduct.innerText();
-        console.log("Total UI (raw text):", totalText);
+        console.log("Total UI :", totalText);
     
         // Extrae solo el número y convierte a float. Elimina el símbolo $ y convierte los valores a números.
         const totalp = parseFloat(totalText.replace(/[^\d.]/g, "")) || 0; //Usa una expresión regular (/[^\d.]/g, "") para eliminar cualquier carácter que no sea un número o un punto decimal. Convierte "$49.99" en "49.99"
     
         console.log("Total UI (converted):", totalp);
     
-        return `$${totalp.toFixed(2)}`; //Asegura que el resultado tenga exactamente 2 decimales (importante para valores monetarios).
+        return `$${totalp.toFixed(2)}`; 
     }
 
     async getTotalCalculation(): Promise<string> {
-        const subtotalText = await this.subtotalValue.innerText(); //Obtiene el texto del subtotal desde la UI. Ejemplo de valor esperado: "$49.99"
-        const taxText = await this.taxValue.innerText(); //Obtiene el texto del impuesto desde la UI. Ejemplo de valor esperado: "$4.00"
+        const subtotalText = await this.subtotalValue.innerText(); 
+        const taxText = await this.taxValue.innerText(); 
     
-        console.log("Subtotal (raw text):", subtotalText); //Subtotal (raw text): $49.99
-        console.log("Tax (raw text):", taxText);
+        console.log("Subtotal :", subtotalText); 
+        console.log("Tax :", taxText);
     
         // Limpiar y convertir valores numéricos
-        const subtotal = parseFloat(subtotalText.replace(/[^\d.]/g, "")) || 0; //Si parseFloat() devuelve NaN (no numérico) (por ejemplo, si el texto estuviera vacío), se asigna 0 como valor predeterminado.
+        const subtotal = parseFloat(subtotalText.replace(/[^\d.]/g, "")) || 0; 
         const tax = parseFloat(taxText.replace(/[^\d.]/g, "")) || 0;
     
-        console.log("Subtotal (converted):", subtotal); //Muestra los valores convertidos en consola para verificar que la conversión de texto a número fue correcta. 49.99
+        console.log("Subtotal (converted):", subtotal); 
         console.log("Tax (converted):", tax);
     
-        // Calcular el total correctamente
-        const total = (subtotal + tax).toFixed(2); //el total lo muetsra con 2 decimales para temas de precio. 
+        
+        const total = (subtotal + tax).toFixed(2); 
     
-        console.log("GRAN TOTAL: ", total); // 53.99
+        console.log("GRAN TOTAL: ", total); 
     
         return `$${total}`; //Devuelve el total formateado con un símbolo de dólar al inicio ("$53.99").
     }

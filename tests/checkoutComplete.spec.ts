@@ -29,10 +29,10 @@ test("Validate that the checkout complete page displays the correct title and su
 
         const checkoutCompletePage = new CheckoutCompletePage(page);
         
-        //Assertion: The user is redirected to the "Checkout Complete" page with a confirmation message
+        
         await expect(page).toHaveURL('/checkout-complete.html');
         await expect(checkoutCompletePage.getCheckoutCompleteTitle()).toHaveText("Checkout: Complete!".trim())
-        await expect(checkoutCompletePage.getOrderMessage()).toHaveText("Thank you for your order!".trim()); //.trim() asegurarte de que no haya espacios extra al inicio o al final
+        await expect(checkoutCompletePage.getOrderMessage()).toHaveText("Thank you for your order!".trim()); 
         await expect(checkoutCompletePage.getOrderDispatchedMessage()).toBeVisible();
         await expect(checkoutCompletePage.getOrderDispatchedMessage()).toHaveText("Your order has been dispatched, and will arrive just as fast as the pony can get there!".trim());
       });
@@ -57,12 +57,12 @@ test("Validate that the checkout complete page displays the correct title and su
 
         const checkoutCompletePage = new CheckoutCompletePage(page);
         
-        //Assertion: Back home button is available before clicking.
+        
         await expect(checkoutCompletePage.getBackHomeButtonVisible()).toBeVisible();
         
         await checkoutCompletePage.clickBackHomeButton();
         
-        //Assertion: The user is redirected to the inventory page (inventory page).
+        
         await expect(page).toHaveURL("/inventory.html")
         
       });
@@ -82,15 +82,15 @@ test("Validate that the checkout complete page displays the correct title and su
         await checkoutInfoPage.checkoutCorrectInfo('Luciana', 'Domínguez Diez', '7689027888');
     
         const checkoutOverviewPage = new CheckoutOverviewPage(page);
-        await checkoutOverviewPage.completeOrder(); //va al método de completar una orden exitosamente
+        await checkoutOverviewPage.completeOrder(); 
 
-        const checkoutCompletePage = new CheckoutCompletePage(page); //llama al método
+        const checkoutCompletePage = new CheckoutCompletePage(page); 
 
-        //Assertion: The user is redirected to the complete page.
+        
         await expect(page).toHaveURL('/checkout-complete.html')
         
-        //Assertion: Back home button is available before clicking.
-        await expect(checkoutCompletePage.getShoppingCartBadge()).toBeHidden(); //toBeHidden() verifica que el elemento no esté visible en la pantalla.
+        
+        await expect(checkoutCompletePage.getShoppingCartBadge()).toBeHidden(); 
 
         
       });
