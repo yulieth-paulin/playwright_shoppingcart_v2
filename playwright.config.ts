@@ -15,12 +15,13 @@ dotenv.config({ path: path.resolve(__dirname, `.env.${process.env.ENV || 'qa'}`)
  * See https://playwright.dev/docs/test-configuration.
  */
 export default defineConfig({
+  reporter: [['list'], ['allure-playwright']],
   testDir: './tests',
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 0,
   workers: process.env.CI ? 1 : undefined,
-  reporter: 'html',
+  //reporter: 'html',
 
   use: {
     baseURL: process.env.BASE_URL, // Se asigna la URL del ambiente
