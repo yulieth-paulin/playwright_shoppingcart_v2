@@ -50,3 +50,5 @@ jobs:
           path: allure-report
 
 
+      - name: Copiar variables de entorno QA
+        run: cp .env.qa .env
