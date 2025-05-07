@@ -47,7 +47,7 @@ test.describe("Login challenge", async () => {
         await expect(loginPage.getErrorMessage()).toHaveText('Epic sadface: Password is required');
       });
 
-      test("login with locked user", async ({ page }) => {
+      test("login with locked user in the page", async ({ page }) => {
         const loginPage = new LoginPage(page);
         await loginPage.loginCorrectCredentials('locked_out_user','secret_sauce');
         
@@ -55,6 +55,13 @@ test.describe("Login challenge", async () => {
       });
 
       test("SQL Injection attempt", async ({ page }) => {
+        const loginPage = new LoginPage(page);
+        await loginPage.loginCorrectCredentials("' OR '1'='1'",'secret_sauce');
+        
+        await expect(loginPage.getErrorMessage()).toHaveText('Epic sadface: Username and password do not match any user in this service');
+      });
+
+      test("SQL2 Injection attempt", async ({ page }) => {
         const loginPage = new LoginPage(page);
         await loginPage.loginCorrectCredentials("' OR '1'='1'",'secret_sauce');
         
