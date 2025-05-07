@@ -1,0 +1,7 @@
+Total UI : Total: $8.63
+Total UI (converted): 8.63
+Subtotal : Item total: $7.99
+Tax : Tax: $0.64
+Subtotal (converted): 7.99
+Tax (converted): 0.64
+GRAN TOTAL:  8.63

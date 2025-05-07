@@ -78,7 +78,7 @@ test.describe("Inventory challenge", async () => {
 
       });
 
-      test("Verify adding a random product to cart", async ({ page }) => {
+      test("Verify adding one random product to cart", async ({ page }) => {
         const loginPage = new LoginPage(page);
         await loginPage.loginCorrectCredentials('standard_user','secret_sauce'); 
 
@@ -91,6 +91,20 @@ test.describe("Inventory challenge", async () => {
         await expect(inventoryPage.getCartCount()).toHaveText('1'); 
 
       });
+
+      //adding any quantity of products random. 
+      test("Verify adding random products to cart", async ({ page }) => {
+        const loginPage = new LoginPage(page);
+        await loginPage.loginCorrectCredentials('standard_user', 'secret_sauce'); 
+    
+        const inventoryPage = new InventoryPage(page);
+        const products = await inventoryPage.addRandomProductsToCart(4);  // <-Here you define how many you want
+        for (const product of products) {
+            console.log(`Added to cart: ${product.name} - ${product.description} - ${product.price}`);
+        }
+    
+        await expect(inventoryPage.getCartCount()).toHaveText('4');
+    });
     
 
       test("Verify removing a product from the cart", async ({ page }) => {
@@ -132,6 +146,21 @@ test.describe("Inventory challenge", async () => {
 
 
       });
+
+      test("About page is open successfully", async ({ page }) => {
+        const loginPage = new LoginPage(page);
+        const inventoryPage = new InventoryPage(page);
+
+        await loginPage.loginCorrectCredentials('standard_user','secret_sauce');
+        
+        await inventoryPage.goToMenu(); 
+        await inventoryPage.openAboutPage();
+
+        await expect(inventoryPage.aboutPageTitle()).toHaveText('Build apps users love with AI-driven insights'); 
+
+      });
+
+
 
 
     }); 

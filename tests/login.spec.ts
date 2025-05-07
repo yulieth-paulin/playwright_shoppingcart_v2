@@ -47,6 +47,13 @@ test.describe("Login challenge", async () => {
         await expect(loginPage.getErrorMessage()).toHaveText('Epic sadface: Password is required');
       });
 
+      test("login with locked user", async ({ page }) => {
+        const loginPage = new LoginPage(page);
+        await loginPage.loginCorrectCredentials('locked_out_user','secret_sauce');
+        
+        await expect(loginPage.getErrorMessage()).toHaveText('Epic sadface: Sorry, this user has been locked out.');
+      });
+
       test("SQL Injection attempt", async ({ page }) => {
         const loginPage = new LoginPage(page);
         await loginPage.loginCorrectCredentials("' OR '1'='1'",'secret_sauce');

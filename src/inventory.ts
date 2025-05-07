@@ -11,6 +11,9 @@ export class InventoryPage {
     private readonly inventoryItems: Locator;
     private readonly removeButton: Locator;
     private readonly itemQuantity: Locator;
+    private readonly menuButton: Locator;
+    private readonly aboutLink: Locator;
+    private readonly aboutPageHeader: Locator;
 
     constructor(page: Page){
         this.shoppingCartIcon = page.locator("//a[@class='shopping_cart_link']"); 
@@ -23,6 +26,9 @@ export class InventoryPage {
         this.inventoryItems = page.locator(".inventory_item"); 
         this.removeButton = page.getByRole('button', {name: 'Remove'});
         this.itemQuantity = page.locator("//div[@data-test='item-quantity']");  
+        this.menuButton = page.locator("//button[@id='react-burger-menu-btn']");
+        this.aboutLink = page.locator("//a[@data-test='about-sidebar-link']");
+        this.aboutPageHeader = page.locator("//h1[@class='MuiTypography-root MuiTypography-h1 css-152qxt']");
 
     }
 
@@ -54,6 +60,7 @@ export class InventoryPage {
         return this.productSortContainer; 
     }
 
+    //Adding only 1 random product
     async addRandomProductToCart(): Promise<{name: string; description: string; price: string}> { 
 
         const productCount = await this.inventoryItems.count(); 
@@ -71,6 +78,36 @@ export class InventoryPage {
         return { name: productName, description: productDescription, price: productPrice }; 
         
     }
+    //Add any quantity of products to the cart.
+    async addRandomProductsToCart(count: number): Promise<{ name: string; description: string; price: string }[]> {
+        const productCount = await this.inventoryItems.count();
+    
+        if (count > productCount) {
+            throw new Error(`Requested ${count} products, but only ${productCount} are available.`);
+        }
+    
+        const selectedIndices = new Set<number>();
+        while (selectedIndices.size < count) {
+            selectedIndices.add(Math.floor(Math.random() * productCount));
+        }
+    
+        const selectedProducts: { name: string; description: string; price: string }[] = [];
+    
+        for (const index of selectedIndices) {
+            const product = this.inventoryItems.nth(index);
+            const name = await product.locator('.inventory_item_name').innerText();
+            const description = await product.locator('.inventory_item_desc').innerText();
+            const price = await product.locator('.inventory_item_price').innerText();
+    
+            await product.locator('button').click();
+    
+            selectedProducts.push({ name, description, price });
+        }
+    
+        return selectedProducts;
+    }
+
+
 
     public getInventoryItems(): Locator {
         return this.inventoryItems;
@@ -96,6 +133,18 @@ export class InventoryPage {
 
     public getQuantityLocator(): Locator{ 
         return this.itemQuantity;
+    }
+
+    async goToMenu(): Promise<void> {
+        await this.menuButton.click();
+    }
+
+    async openAboutPage(): Promise<void> {
+        await this.aboutLink.click();
+    }
+
+    public aboutPageTitle(): Locator {
+        return this.aboutPageHeader;
     }
 
 }
